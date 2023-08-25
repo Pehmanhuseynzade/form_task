@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "./index.css"
+import { Link } from 'react-router-dom';
+
 function Table() {
   const [selectedType, setSelectedType] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
@@ -19,52 +21,61 @@ function Table() {
     setSelectedOption2(choose2 || '');
   }, []);
 
+  // Determine the description based on the selectedType value
+  let description;
+  if (selectedType === 'type5') {
+    description = 'Qeyd';
+  } else {
+    description = 'Tesvir';
+  }
+
   return (
     <>
-    <div className='main-tables'>
-    <div className='table-1'>
-    <h1>Merhele 1</h1>
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Choose1:</td>
-            <td>{selectedOption}</td>
-          </tr>
-          <tr>
-            <td>Choose2:</td>
-            <td>{selectedOption2}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div className='table2'>
-    <h1>Merhele 2</h1>
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Types:</td>
-            <td>{selectedType}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-    </div>
-    </div>
+      <Link to='/'><button className='back'>Go Back</button></Link>
+      <div className='main-tables'>
+        <div className='table-1'>
+          <h1>Merhele 1</h1>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Choose1:</td>
+                  <td>{selectedOption}</td>
+                </tr>
+                <tr>
+                  <td>Choose2:</td>
+                  <td>{selectedOption2}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className='table2'>
+            <h1>Merhele 2</h1>
+            <div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Types:</td>
+                    <td>{selectedType} {description}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
