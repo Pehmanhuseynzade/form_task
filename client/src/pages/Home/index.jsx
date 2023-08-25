@@ -79,10 +79,11 @@ function Home() {
             {isButton1Clicked && (
               <div>
                 <select
+                name='choose1'
                   value={selectedOption}
                   onChange={(e) => setSelectedOption(e.target.value)}
                 >
-                  <option value="">Seçim edin</option>
+                  <option value={selectedOption}>Seçim edin</option>
                   {info.map(infos => (
                     <option key={infos.value} value={infos.value}>
                       {infos.name}/{infos.surname}/{infos.age}
@@ -101,6 +102,7 @@ function Home() {
             {isButton2Clicked && (
               <div>
                 <select
+                name='choose2'
                   value={selectedOption2}
                   onChange={(e) => setSelectedOption2(e.target.value)}
                 >
