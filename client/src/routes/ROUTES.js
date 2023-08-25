@@ -1,3 +1,4 @@
+import Admin from "../pages/Admin";
 import Home from "../pages/Home";
 import Mainroot from "../pages/Mainroot";
 import Table from "../pages/Table";
@@ -15,6 +16,10 @@ export const ROUTER = [
             {
                 path: 'table',
                 element: <Table />
+            },
+            {
+                path: 'admin',
+                element: <Admin />
             }
         ]
     }

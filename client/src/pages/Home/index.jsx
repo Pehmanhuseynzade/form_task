@@ -58,6 +58,7 @@ function Home() {
       <form action='/table' method='get' >
         <label htmlFor="types">Merhele 1:</label>
         <select
+          key='table2_'
           name="types"
           id="types"
           onChange={handleTypeChange}
@@ -79,6 +80,7 @@ function Home() {
             {isButton1Clicked && (
               <div>
                 <select
+                key='table1_'
                 name='choose1'
                   value={selectedOption}
                   onChange={(e) => setSelectedOption(e.target.value)}
@@ -102,6 +104,7 @@ function Home() {
             {isButton2Clicked && (
               <div>
                 <select
+                key='table2_'
                 name='choose2'
                   value={selectedOption2}
                   onChange={(e) => setSelectedOption2(e.target.value)}
