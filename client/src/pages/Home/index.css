@@ -1,0 +1,23 @@
+.form-elements{
+    margin-top: 30px;
+    margin-left: 20px;
+}
+form{
+    display: flex;
+    gap: 20px;
+}
+.next{
+    width: 70px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: rgba(18, 18, 201, 0.881);
+    color: white;
+    font-weight: bold;
+    transition: .5s;
+    border: none;
+
+}
+.next:hover{
+    background-color: teal;
+    cursor: pointer;
+}
