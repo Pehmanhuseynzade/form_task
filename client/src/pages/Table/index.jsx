@@ -6,22 +6,45 @@ function Table() {
   const [selectedType, setSelectedType] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedOption2, setSelectedOption2] = useState('');
+  const [responseData, setResponseData] = useState(null);
+
+  const postDataToServer = async () => {
+    try {
+      const response = await fetch('http://localhost:9494/api/post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          selectedType,
+          selectedOption,
+          selectedOption2,
+        }),
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        setResponseData(responseData); // Sunucu yanıtını saklayın
+        console.log('Veri başarıyla post edildi. Sunucu yanıtı:', responseData);
+      } else {
+        console.error('Veriler post edilirken bir hata oluştu.');
+      }
+    } catch (error) {
+      console.error('Post işlemi sırasında bir hata oluştu: ', error);
+    }
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
 
-    // Extract the 'types', 'choose1', and 'choose2' parameters from the query string
     const types = searchParams.get('types');
     const choose1 = searchParams.get('choose1');
     const choose2 = searchParams.get('choose2');
 
-    // Set the extracted values into state variables
     setSelectedType(types || '');
     setSelectedOption(choose1 || '');
     setSelectedOption2(choose2 || '');
   }, []);
 
-  // Determine the description based on the selectedType value
   let description;
   if (selectedType === 'type5') {
     description = 'Qeyd';
@@ -74,8 +97,18 @@ function Table() {
               </table>
             </div>
           </div>
+          <button type='submit' className='send' onClick={postDataToServer}>
+            Send
+          </button>
         </div>
       </div>
+      {responseData && (
+        <div className="response-data">
+          <h2>Sunucu Yanıtı</h2>
+          {/* İstenilen verileri burada görüntüleyebilirsiniz */}
+          <pre>{JSON.stringify(responseData, null, 2)}</pre>
+        </div>
+      )}
     </>
   );
 }

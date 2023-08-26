@@ -57,3 +57,22 @@ export const getuserinfoDelete = async(id)=>{
 export const getuserinfopost = async(payload)=>{
     await axios.post(`${BASE_URL}/userinfo`,payload)
 }
+
+//POST
+export const getpostinfo = async()=>{
+    let globalData;
+    await axios.get(`${BASE_URL}/post`)
+    .then((res)=>{
+         globalData = res.data
+    })
+    return globalData
+}
+
+export const getpostDelete = async(id)=>{
+    await axios.delete(`${BASE_URL}/post/${id}`)
+}
+
+export const getpost = async(payload)=>{
+    await axios.post(`${BASE_URL}/post`,payload)
+}
+

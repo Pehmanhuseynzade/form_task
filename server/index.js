@@ -13,6 +13,7 @@ dotenv.config();
 const types_router = require("./routes/types.routes")
 const userinfo_router = require("./routes/userinfo.routes")
 const category_router = require("./routes/category.routes")
+const post_router = require("./routes/post.routes")
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use(`/api/types`, types_router)
 app.use(`/api/userinfo`, userinfo_router)
 app.use(`/api/category`, category_router)
+app.use(`/api/post`, post_router)
 
 PORT = process.env.PORT;
 app.listen(PORT, () => {

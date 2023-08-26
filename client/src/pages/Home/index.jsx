@@ -55,7 +55,7 @@ function Home() {
 
   return (
     <div className='form-elements'>
-      <form action='/table' method='get' >
+      <form action='/table' method='get'>
         <label htmlFor="types">Merhele 1:</label>
         <select
           key='table2_'
@@ -85,7 +85,7 @@ function Home() {
                   value={selectedOption}
                   onChange={(e) => setSelectedOption(e.target.value)}
                 >
-                  <option value={selectedOption}>Seçim edin</option>
+                  <option>Seçim edin</option>
                   {info.map(infos => (
                     <option key={infos.value} value={infos.value}>
                       {infos.name}/{infos.surname}/{infos.age}
@@ -109,7 +109,7 @@ function Home() {
                   value={selectedOption2}
                   onChange={(e) => setSelectedOption2(e.target.value)}
                 >
-                  <option value="">Seçim edin</option>
+                  <option >Seçim edin</option>
                   {company.map(companyitems => (
                     <option key={companyitems.value} value={companyitems.value}>
                       {companyitems.companyname}/{companyitems.companycategory}
