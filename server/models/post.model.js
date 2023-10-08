@@ -1,9 +1,6 @@
 const mongoose = require('mongoose')
 
 const postSchema = new mongoose.Schema({
-  // selectType: String,
-  // selectOption:String,
-  // selectOption2:String
   type: String,
   companyname: String,
   companycategory:String,

@@ -1,9 +1,7 @@
 const mongoose = require('mongoose')
 
 const userinfoSchema = new mongoose.Schema({
-  name: String,
-  surname:String,
-  age:Number
+  userInfo:String
 });
 
 const userinfoModel = mongoose.model('userinfo', userinfoSchema);

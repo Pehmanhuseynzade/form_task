@@ -1,38 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import "./index.css"
 import { Link } from 'react-router-dom';
+import { getpost } from '../../api/httpsrequests';
 
 function Table() {
   const [selectedType, setSelectedType] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedOption2, setSelectedOption2] = useState('');
-  const [responseData, setResponseData] = useState(null);
+  // const [responseData, setResponseData] = useState(null);
+  const parts = selectedOption.split('/');
+  const ad = parts[0];
+  const soyad = parts[1];
+  const yas = parts[2];
 
-  const postDataToServer = async () => {
+  console.log(selectedOption);
+
+  const parts2 = selectedOption2.split('/');
+  const companyName = parts2[0];
+  const companyCat = parts2[1];
+
+  console.log(selectedOption2);
+  const handleSubmit = async () => {
     try {
-      const response = await fetch('http://localhost:9494/api/post', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          selectedType,
-          selectedOption,
-          selectedOption2,
-        }),
-      });
-      if (response.ok) {
-        const responseData = await response.json();
-        setResponseData(responseData); // Sunucu yanıtını saklayın
-        console.log('Veri başarıyla post edildi. Sunucu yanıtı:', responseData);
-      } else {
-        console.error('Veriler post edilirken bir hata oluştu.');
+      const formData = {
+        type: selectedType,
+        companyname:companyName,
+        companycategory:companyCat,
+        name:ad,
+        surname:soyad,
+        age:yas
+      };
+      const formsucces = await getpost(formData);
+      console.log(formData);
+      if (formsucces) {
+        setSelectedType({ ...selectedType, isPosted: true });
+        setSelectedOption({ ...selectedOption, isPosted: true });
+        setSelectedOption2({ ...selectedOption2, isPosted: true });
       }
     } catch (error) {
-      console.error('Post işlemi sırasında bir hata oluştu: ', error);
+      console.error('Failed to make a form:', error);
     }
   };
-
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
 
@@ -97,18 +105,11 @@ function Table() {
               </table>
             </div>
           </div>
-          <button type='submit' className='send' onClick={postDataToServer}>
+          <button type='submit' className='send' onClick={handleSubmit}>
             Send
           </button>
         </div>
       </div>
-      {responseData && (
-        <div className="response-data">
-          <h2>Sunucu Yanıtı</h2>
-          {/* İstenilen verileri burada görüntüleyebilirsiniz */}
-          <pre>{JSON.stringify(responseData, null, 2)}</pre>
-        </div>
-      )}
     </>
   );
 }
